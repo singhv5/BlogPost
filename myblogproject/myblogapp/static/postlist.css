@@ -1,0 +1,67 @@
+/* Style for post title */
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for post content */
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for post author */
+  .post-author {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for post dates */
+  .post-date {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for post actions */
+  .post-actions {
+    margin-top: 20px;
+  }
+  
+  /* Style for post action links */
+  .post-actions a {
+    font-size: 14px;
+    color: #007bff;
+    margin-right: 10px;
+  }
+  
+  /* Style for "no posts" message */
+  .no-posts {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for "create new post" button */
+  .create-post-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  /* Style for "home" link */
+  .home-link {
+    font-size: 14px;
+    color: #999;
+    margin-top: 20px;
+  }
+  

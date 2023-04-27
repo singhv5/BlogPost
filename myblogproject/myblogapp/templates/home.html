@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid bg-primary text-light py-5">
+        <div class="container">
+            <h1 class="display-3">Welcome to your blog page!</h1>
+            <p class="lead">You are now logged in.</p>
+            <a href="{% url 'postCreateView' %}" class="btn btn-lg btn-success">Create post</a>
+            <a href="{% url 'postListView' %}" class="btn btn-lg btn-light mx-2">View post</a>
+            <a href="{% url 'postSearchView' %}" class="btn btn-lg btn-light mx-2">Search post</a>
+        </div>
+    </div>
+{% endblock %}

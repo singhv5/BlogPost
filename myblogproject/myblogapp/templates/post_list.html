@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load social_share_tags %}
+{% load social_share %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'postlist.css' %}">
+{% for post in posts %}
+    <div class="card mb-3">
+        <div class="card-header">
+            <h2>{{ post.title }}</h2>
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{ post.content }}</p>
+            <p class="card-text"><strong>Author:</strong> {{ post.author }}</p>
+            <p class="card-text"><strong>Created:</strong> {{ post.created_date }}</p>
+            <p class="card-text"><strong>Updated:</strong> {{ post.updated_date }}</p>
+            {% if user.is_authenticated and user == post.author %}
+                <a href="{% url 'postUpdateView' pk=post.id %}" class="btn btn-primary">Update Post</a>
+                <a href="{% url 'postDeleteView' pk=post.id %}" class="btn btn-danger">Delete Post</a>
+                <br>
+            {% endif %}
+            <br>
+            <a href="{% url 'profile_view' username=post.author %}" class="btn btn-secondary">Profile</a>
+            <a href="{% url 'add_rating' pk=post.id %}" class="btn btn-primary">Add Rating</a>
+            <a href="{% url 'add_comment_to_post' pk=post.id %}" class="btn btn-primary">Add Comment</a>
+            
+        </div>
+        <div class="card-footer">
+            <br>
+            <p class="card-text">
+                {% for c in comment %}
+                    {% if c.post.title == post.title %}
+                        [{{ c.author }} said "{{ c.text}}"]
+                    {% endif %}
+                {% endfor %}
+            </p>
+            <p class="card-text">
+                {% for r in rating %}
+                    {% if r.post.title == post.title %}
+                       [ {{ r.user }} 
+                            {% if r.value == 1 %}
+                                &#9733;
+                            {% endif %}
+                            {% if r.value == 2 %}
+                                &#9733; &#9733;
+                            {% endif %}
+                            {% if r.value == 3 %}
+                                &#9733; &#9733; &#9733;
+                            {% endif %}
+                            {% if r.value == 4 %}
+                                &#9733; &#9733; &#9733; &#9733;
+                            {% endif %}
+                            {% if r.value == 5 %}
+                                &#9733; &#9733; &#9733; &#9733; &#9733;
+                            {% endif %}
+                        ]       
+                    {% endif %}
+                {% endfor %}
+            </p>
+            <p class="card-text"> {% post_to_facebook url %} 
+                {% post_to_linkedin url %}
+                {% post_to_whatsapp url %}
+                {% post_to_telegram url %}
+                </p>
+        </div>
+    </div>
+{% empty %}
+    <p>No posts yet.</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+    <a href="{% url 'postCreateView' %}" class="btn btn-primary">Create New Post</a>
+{% endif %}
+
+<a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+{% endblock %}

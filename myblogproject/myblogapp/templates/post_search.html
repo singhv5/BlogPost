@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="mt-5 mb-4">Search Posts</h1>
+    <form method="GET" action="{% url 'postSearchView' %}" class="form-inline mb-4">
+      <div class="input-group" style="text-align: center;">
+        <input type="text" name="q" class="form-control" placeholder="Search for posts" style="text-align: center;">
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+      </div>
+    </form>
+    {% if posts %}
+      <ul class="list-unstyled">
+        {% for post in posts %}
+          <li class="my-3">
+            <h2><a href="{% url 'viewSearchedPost' post.id %}" class="text-dark">{{ post.title }}</a></h2>
+            <p>{{ post.content }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No posts found.</p>
+    {% endif %}
+    <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+  </div>
+{% endblock %}

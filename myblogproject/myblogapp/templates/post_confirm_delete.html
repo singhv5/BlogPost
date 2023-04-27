@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h1 class="text-danger">Delete "{{ object.title }}"</h1>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Are you sure you want to delete "{{ object.title }}"?</p>
+            <form method="POST" action="{% url 'postDeleteView' post.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="submit" class="btn btn-danger" value="Confirm">
+                    <a href="{% url 'postListView'%}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

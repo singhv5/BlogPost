@@ -1,0 +1,25 @@
+<!-- add_rating.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+<div class="row">
+<div class="col-md-6 mx-auto">
+<h2 class="text-center mb-3">Add Rating for "{{ post.title }}"</h2>
+<form method="post">
+{% csrf_token %}
+<div class="form-group">
+<label for="rating">Rating:</label>
+<select id="rating" name="rating" class="form-control">
+{% for i in range %}
+<option value="{{ i }}" >{{ i }}</option>
+{% endfor %}
+</select>
+</div>
+<button type="submit" class="btn btn-primary">Submit</button>
+<a href="{% url 'postListView'%}" class="btn btn-secondary">Cancel</a>
+</form>
+</div>
+</div>
+</div>
+{% endblock %}

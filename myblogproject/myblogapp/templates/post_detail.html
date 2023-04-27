@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.author }} | {{ post.created_date }}</p>
+    <p>{{ post.content }}</p>
+
+    {% load django-social-share %}
+
+    <div class="share-buttons">
+        Share this post:
+        {% django-social-share post.get_absolute_url share_url %}
+    </div>
+{% endblock %}
